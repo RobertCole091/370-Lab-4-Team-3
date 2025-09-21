@@ -1,0 +1,51 @@
+import javax.swing.*;   // For GUI components(JFrame, JPanel, JButton, JLabel)
+import java.awt.*;      // For layouts, colors, fonts, images
+import java.util.*;     // For ArrayList, Arrays, Collections.shuffle
+
+public class PokerCards extends JFrame {  // Create poker cards window
+    private final JPanel cardPanel;   // The grid where all cards are shown
+    private final ArrayList<String> images;  //A list of file name
+    private final String PATH = "/cards/"; // folder inside Resources Root
+
+    // Construction: Build the window
+    public PokerCards() {
+        setTitle("Poker Cards Shuffle");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //Ensures the program exits when the window closes.
+        setSize(1000, 600);  // Set window size to 1000 * 600 pixels
+        setLayout(new BorderLayout());  // the area are NORTH, SOUTH, EAST, WEST, CENTER
+
+        // Initialize images names (must match image file names)
+        images = new ArrayList<>(Arrays.asList(
+
+                "2_of_clubs.png", "2_of_diamonds.png","2_of_hearts.png", "2_of_spades.png", "3_of_clubs.png", "3_of_diamonds.png", "3_of_hearts.png", "3_of_spades.png", "4_of_clubs.png",
+                "4_of_diamonds.png", "4_of_hearts.png", "4_of_spades.png", "5_of_clubs.png", "5_of_diamonds.png", "5_of_hearts.png", "5_of_spades.png", "6_of_clubs.png", "6_of_diamonds.png",
+                "6_of_hearts.png", "6_of_spades.png", "7_of_clubs.png", "7_of_diamonds.png", "7_of_hearts.png", "7_of_spades.png", "8_of_clubs.png", "8_of_diamonds.png", "8_of_hearts.png",
+                "8_of_spades.png", "9_of_clubs.png", "9_of_diamonds.png", "9_of_hearts.png", "9_of_spades.png", "10_of_clubs.png", "10_of_diamonds.png", "10_of_hearts.png", "10_of_spades.png",
+                "ace_of_clubs.png", "ace_of_diamonds.png", "ace_of_hearts.png", "ace_of_spades.png", "jack_of_clubs.png", "jack_of_diamonds.png", "jack_of_hearts.png", "jack_of_spades.png",
+                "king_of_clubs.png", "king_of_diamonds.png", "king_of_hearts.png", "king_of_spades.png", "queen_of_clubs.png", "queen_of_diamonds.png", "queen_of_hearts.png", "queen_of_spades.png"
+        ));
+
+        // Card display panel
+        cardPanel = new JPanel(new GridLayout(4, 13, 6, 6));
+
+
+        // Shuffle button
+        JButton shuffleButton = new JButton("Shuffle Cards");
+        shuffleButton.setFont(new Font("Times New Roman", Font.BOLD, 25));
+        shuffleButton.setBackground(new Color(4, 71, 5));
+        shuffleButton.setForeground(Color.WHITE);
+        // Add an action listener to the shuffle button.
+        // When the button is clicked, it shuffles the card list and updates the display.
+        shuffleButton.addActionListener(e -> {
+            Collections.shuffle(images);   //randomly order the images list
+
+        });
+
+        add(new JScrollPane(cardPanel), BorderLayout.CENTER); // The card panel is scrollable and placed in the center
+        add(shuffleButton, BorderLayout.SOUTH);               // The shuffle button is at the bottom
+
+        setVisible(true);      // The window is made visible
+    }
+
+
+}
